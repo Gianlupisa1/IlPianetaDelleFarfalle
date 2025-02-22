@@ -78,12 +78,12 @@ def update_json_file():
 
     # Mappatura dei siti da aggiornare
     site_mapping = {
-        'StreamingCommunity': streamingcommunity_domains[0],  # Dominio specifico per StreamingCommunity
+        'StreamingCommunity': streamingcommunity_domains[0], # Dominio specifico per StreamingCommunity
         'Filmpertutti': general_domains[1],                  # Secondo dominio
         'Tantifilm': general_domains[2],                     # Terzo dominio
         'LordChannel': general_domains[3],                   # Quarto dominio
         'StreamingWatch': general_domains[4],                # Quinto dominio
-        'CB01': general_domains[5],                          # Sesto dominio
+        'CB01': streamingcommunity_domains[3],               # Sesto dominio
         'DDLStream': general_domains[6],                     # Settimo dominio
         'Guardaserie': general_domains[7],                   # Ottavo dominio
         'GuardaHD': general_domains[8],                      # Nono dominio
