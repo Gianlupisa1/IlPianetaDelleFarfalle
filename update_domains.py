@@ -45,7 +45,7 @@ def check_redirect(domain):
         response = requests.get(domain, allow_redirects=True)
         final_url = response.url
         final_domain = extract_final_domain(final_url)  # Estrai solo la parte finale del dominio
-        return domain, final_domain
+        return domain, domain
     except requests.RequestException as e:
         return domain, f"Error: {str(e)}"
 
