@@ -38,7 +38,7 @@
             "enabled": "1"
         },
         "DDLStream": {
-            "url": "https://ddlstreamitaly.co/",
+            "url": "https://ddlstreamitaly.co",
             "cookies": {
                 "ips4_device_key": "e76de2d09214c678fa18e317e1aab74b",
                 "ips4_IPSSessionFront": "0327aa552a535f398b051742d0962f3f",
@@ -60,7 +60,7 @@
             "GH_PROXY": "1"
         },
         "Onlineserietv": {
-            "url": "https://onlineserietv.com/",
+            "url": "https://onlineserietv.com",
             "enabled": "1",
             "OST_ForwardProxy": "0",
             "OST_PROXY": "0"
@@ -76,7 +76,7 @@
             "enabled": "1"
         },
         "DaddyLiveHD": {
-            "url": "https://thedaddy.to/",
+            "url": "https://thedaddy.to",
             "enabled": "1"
         }
     },
