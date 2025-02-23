@@ -15,7 +15,7 @@
         "Tantifilm": {
             "url": "https://tanti.bond",
             "TF_ForwardProxy": "0",
-            "TF_PROXY": "1",
+            "TF_PROXY": "0",
             "enabled": "1"
         },
         "Mysterius": {
@@ -31,7 +31,7 @@
         },
         "CB01": {
             "url": "https://cb01new.loan",
-            "CB_PROXY": "0",
+            "CB_PROXY": "1",
             "CB_ForwardProxy": "0",
             "MX_ForwardProxy": "0",
             "MX_PROXY": "0",
@@ -51,13 +51,13 @@
             "url": "https://guardaserie.now",
             "enabled": "1",
             "GS_ForwardProxy": "0",
-            "GS_PROXY": "1"
+            "GS_PROXY": "0"
         },
         "GuardaHD": {
             "url": "https://guardahd.stream",
             "enabled": "1",
             "GH_ForwardProxy": "0",
-            "GH_PROXY": "1"
+            "GH_PROXY": "0"
         },
         "Onlineserietv": {
             "url": "https://onlineserietv.com",
