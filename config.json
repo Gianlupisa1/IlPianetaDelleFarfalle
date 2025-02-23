@@ -13,7 +13,7 @@
             "enabled": "1"
         },
         "Tantifilm": {
-            "url": "https://www.tanti.bond",
+            "url": "https://tantifilm.be",
             "TF_ForwardProxy": "0",
             "TF_PROXY": "1",
             "enabled": "1"
@@ -48,7 +48,7 @@
             "enabled": "1"
         },
         "Guardaserie": {
-            "url": "https://guardaserietv.mom",
+            "url": "https://guardaserietv.meme",
             "enabled": "1",
             "GS_ForwardProxy": "0",
             "GS_PROXY": "1"
