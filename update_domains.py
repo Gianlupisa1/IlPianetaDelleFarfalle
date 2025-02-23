@@ -1,27 +1,38 @@
 import json
 import requests
+import re
 
 def get_domains(pastebin_url):
     """
-    Recupera il contenuto del Pastebin con i domini.
-    :param pastebin_url: URL del Pastebin da cui recuperare i domini.
-    :return: Lista degli URL (senza slash finale).
+    Recupera il contenuto del Pastebin con i link completi e li pulisce.
+    :param pastebin_url: URL del Pastebin da cui recuperare i link.
+    :return: Lista dei link senza 'www.' e senza '/' finale.
     """
     try:
         response = requests.get(pastebin_url)
         response.raise_for_status()
-        domains = response.text.strip().split('\n')
-        domains = [domain.strip().replace('\r', '').rstrip('/') for domain in domains]  # Rimuove \r e lo slash finale
+        # Pulisce i link: rimuove spazi, '\r', '/' finale e 'www.'
+        domains = [clean_url(line) for line in response.text.strip().split('\n')]
         return domains
     except requests.RequestException as e:
-        print(f"Errore durante il recupero dei domini: {e}")
+        print(f"Errore durante il recupero dei link: {e}")
         return []
+
+def clean_url(url):
+    """
+    Pulisce un URL rimuovendo il 'www.' e lo slash finale.
+    :param url: URL da pulire.
+    :return: URL pulito.
+    """
+    url = url.strip().replace('\r', '').rstrip('/')  # Rimuove spazi e '/' finale
+    url = re.sub(r'^https?://www\.', 'https://', url)  # Rimuove 'www.' se presente
+    return url
 
 def update_json_file():
     """
-    Aggiorna il file JSON con gli URL completi recuperati da Pastebin.
+    Aggiorna il file JSON con i link completi (senza 'www.' e senza slash finale).
     """
-    # Carica il file JSON che vuoi aggiornare
+    # Carica il file JSON
     try:
         with open('config.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
@@ -32,41 +43,41 @@ def update_json_file():
         print("Errore: Il file config.json non è un JSON valido.")
         return
 
-    # Ottieni gli URL per StreamingCommunity da un Pastebin specifico
+    # URL dei Pastebin
     streamingcommunity_url = 'https://pastebin.com/raw/KgQ4jTy6'
-    streamingcommunity_domains = get_domains(streamingcommunity_url)
-
-    # Ottieni gli URL per gli altri siti dal Pastebin generale
     general_pastebin_url = 'https://pastebin.com/raw/E8WAhekV'
-    general_domains = get_domains(general_pastebin_url)
 
-    if not general_domains or not streamingcommunity_domains:
-        print("Lista degli URL vuota. Controlla i link di Pastebin.")
+    # Recupera i link dai Pastebin
+    streamingcommunity_links = get_domains(streamingcommunity_url)
+    general_links = get_domains(general_pastebin_url)
+
+    if not streamingcommunity_links or not general_links:
+        print("Lista dei link vuota. Controlla i link di Pastebin.")
         return
 
-    # Mappatura dei siti da aggiornare
+    # Mappatura siti da aggiornare con i link completi
     site_mapping = {
-        'StreamingCommunity': streamingcommunity_domains[0],  # Dominio specifico per StreamingCommunity
-        'Filmpertutti': general_domains[1],                  # Secondo dominio
-        'Tantifilm': general_domains[2],                     # Terzo dominio
-        'LordChannel': general_domains[3],                   # Quarto dominio
-        'StreamingWatch': general_domains[4],                # Quinto dominio
-        'CB01': general_domains[5],                          # Sesto dominio
-        'DDLStream': general_domains[6],                     # Settimo dominio
-        'Guardaserie': general_domains[7],                   # Ottavo dominio
-        'GuardaHD': general_domains[8],                      # Nono dominio
-        'AnimeWorld': general_domains[9],                    # Decimo dominio
-        'SkyStreaming': general_domains[10],                 # Undicesimo dominio
-        'DaddyLiveHD': general_domains[11],                  # Dodicesimo dominio
+        'StreamingCommunity': streamingcommunity_links[0],
+        'Filmpertutti': general_links[1],
+        'Tantifilm': general_links[2],
+        'LordChannel': general_links[3],
+        'StreamingWatch': general_links[4],
+        'CB01': general_links[5],
+        'DDLStream': general_links[6],
+        'Guardaserie': general_links[7],
+        'GuardaHD': general_links[8],
+        'AnimeWorld': general_links[9],
+        'SkyStreaming': general_links[10],
+       # 'DaddyLiveHD': general_links[11],  # Commentato come nell'originale
     }
 
-    # Aggiorna il file JSON con gli URL completi
+    # Aggiorna il file JSON
     for site_key, full_url in site_mapping.items():
         if site_key in data['Siti']:
-            data['Siti'][site_key]['url'] = full_url  # Usa "url" invece di "domain"
-            print(f"Aggiornato {site_key}: {full_url}")  # Messaggio di debug
+            data['Siti'][site_key]['url'] = full_url  # Usa 'url' invece di 'domain'
+            print(f"Aggiornato {site_key}: {full_url}")  # Debug
 
-    # Scrivi il file JSON aggiornato
+    # Salva il JSON aggiornato
     try:
         with open('config.json', 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=4, ensure_ascii=False)
