@@ -13,7 +13,7 @@
             "enabled": "1"
         },
         "Tantifilm": {
-            "url": "https://tanti.bond",
+            "url": "https://tantifilm.be",
             "TF_ForwardProxy": "0",
             "TF_PROXY": "1",
             "enabled": "1"
