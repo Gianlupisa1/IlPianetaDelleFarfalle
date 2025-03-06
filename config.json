@@ -13,9 +13,9 @@
             "enabled": "1"
         },
         "Tantifilm": {
-            "url": "https://tantifilm.be",
+            "url": "https://tantifilm.name",
             "TF_ForwardProxy": "0",
-            "TF_PROXY": "1",
+            "TF_PROXY": "0",
             "enabled": "1"
         },
         "Mysterius": {
@@ -57,13 +57,13 @@
             "url": "https://guardahd.stream",
             "enabled": "1",
             "GH_ForwardProxy": "0",
-            "GH_PROXY": "1"
+            "GH_PROXY": "0"
         },
         "Onlineserietv": {
             "url": "com",
             "enabled": "1",
             "OST_ForwardProxy": "0",
-            "OST_PROXY": "1"
+            "OST_PROXY": "0"
         },
         "AnimeWorld": {
             "url": "https://animeworld.so",
