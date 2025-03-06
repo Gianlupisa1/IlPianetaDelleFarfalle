@@ -56,7 +56,7 @@ async def search(showname,date,client,ismovie,episode,season):
     'origin_id': '50141',
     'searchwp_live_search_client_nonce': 'undefined',
     }
-    response = await client.get(ForwardProxy + f"https://onlineserietv.{OST_DOMAIN}/", headers=headers, params=params, cookies=cookies, impersonate = "chrome124", proxies = proxies)
+    response = await client.get(ForwardProxy + f"https://onlineserietv.{OST_DOMAIN}/wp-admin/admin-ajax.php", headers=headers, params=params, cookies=cookies, impersonate = "chrome124", proxies = proxies)
     print(response)
     soup = BeautifulSoup(response.text, 'lxml', parse_only=SoupStrainer('a'))
     a_tags_with_href = soup.find_all("a", href=True)
